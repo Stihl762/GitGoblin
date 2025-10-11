@@ -1,9 +1,9 @@
 {
-  "name": "goblinhq-ui",
+  "name": "gitgoblin",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "main.js",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

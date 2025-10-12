@@ -1,11 +1,6 @@
-import { app, BrowserWindow } from 'electron';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Detect dev mode
 const isDev = process.env.NODE_ENV === 'development' || process.argv.includes('--dev');
 
 function createWindow() {
@@ -15,23 +10,16 @@ function createWindow() {
     resizable: false,
     title: 'GoblinHQ',
     webPreferences: {
-      // Make sure this path matches your actual preload.js location
-      preload: path.join(__dirname, 'electron/preload.js'),
+      preload: path.join(__dirname, 'preload.js'),
     },
   });
 
   if (isDev) {
     mainWindow.loadURL('http://localhost:5173');
+    // mainWindow.webContents.openDevTools();
   } else {
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
   }
-
-  // Open dev tools automatically in dev mode
-  if (isDev) mainWindow.webContents.openDevTools();
-
-  mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
 }
 
 app.whenReady().then(() => {

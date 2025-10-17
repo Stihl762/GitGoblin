@@ -9,6 +9,7 @@ const createWindow = () => {
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
+    resizable: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -19,11 +20,12 @@ const createWindow = () => {
   } else {
     win.loadFile(path.join(__dirname, '../renderer/index.html'))
   }
+
+  win.webContents.openDevTools() // optional for debugging
 }
 
 app.whenReady().then(() => {
   createWindow()
-
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })

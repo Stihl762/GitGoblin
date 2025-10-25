@@ -1,49 +1,57 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Base background texture */
-#menu-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('/textures/stone-texture.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 0;
-}
-
+/* Reset and basic body styling */
 html, body, #root {
-  height: 100vh;
-  width: 100vw;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3f4f6; /* match inline main menu background */
+  color: #000; /* default text color */
 }
 
-/* Optional overlay for dimming or contrast */
-#menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 1;
+/* Headings */
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
 }
 
-/* React UI layer */
-#root {
-  position: relative;
-  z-index: 2;
+/* Mode selection hover (for future class-based usage) */
+.mode-selection div:hover {
+  color: #16a34a; /* green highlight on hover */
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Sidebar styling for AmberEye */
+.sidebar {
+  background-color: #e5e7eb; /* gray-200 */
+  border-right: 1px solid #9ca3af; /* gray-400 */
+  padding: 1rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
+  flex-direction: column;
+}
+
+.sidebar button {
+  background-color: #16a34a; /* green-600 */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar button:hover {
+  background-color: #22c55e; /* green-500 */
+}
+
+/* Footer version text */
+.footer-version {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+  font-size: 0.75rem;
+  color: #6b7280; /* gray-500 */
 }

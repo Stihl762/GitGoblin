@@ -1,12 +1,24 @@
 // electron/preload.js
-import { contextBridge, ipcRenderer } from "electron";
+const { contextBridge, ipcRenderer } = require("electron");
+
+/**
+ * This preload script securely exposes limited APIs
+ * to the renderer (React) environment.
+ *
+ * Available under: window.electronAPI
+ */
 
 contextBridge.exposeInMainWorld("electronAPI", {
-  launchChrome: (options) => {
-    // options: { url, x, y, width, height }
-    return ipcRenderer.invoke("launch-chrome", options);
-  },
+  /**
+   * Launch the Chrome window alongside the Electron app.
+   * The Chrome process and positioning are managed by the main process.
+   */
+  launchChromeWindow: () => ipcRenderer.invoke("launch-chrome-window"),
 
-  // Optional: expose file icon functionality if needed
-  // getFileIcon: (filePath) => ipcRenderer.invoke("get-file-icon", filePath),
+  /**
+   * (Optional future expansion)
+   * Navigate the launched Chrome instance to a custom URL.
+   * You’ll add a handler for this later in main.js.
+   */
+  openChromeURL: (url) => ipcRenderer.invoke("open-chrome-url", url),
 });
